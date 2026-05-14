@@ -1,12 +1,24 @@
 package cat.inspla.ra3.reserves;
 
-// TODO RA4: afegeix una capçalera Javadoc de classe que expliqui la responsabilitat de la classe Aula.
+/**
+ * Aquesta classe implementa la interfície {@link Reservable} i s'encarrega de controlar
+ * l'estat d'ocupació, la capacitat d'alumnes i el càlcul del cost del lloguer temporal.
+ *
+ * @author Marc Freixas
+ * @version 1.0
+ */
 public class Aula implements Reservable {
     private final String nom;
     private final int capacitat;
     private boolean disponible;
 
-    // TODO RA4: documenta el constructor amb @param i @throws.
+    /**
+     * Construeix una nova instància d'Aula amb un nom i una capacitat específica.
+     *
+     * @param nom Nom identificatiu de l'aula (no pot ser nul ni estar buit).
+     * @param capacitat Nombre màxim de persones que pot encabir (ha de ser positiu).
+     * @throws IllegalArgumentException si el nom és nul/buit o si la capacitat és zero o negativa.
+     */
     public Aula(String nom, int capacitat) {
         if (nom == null || nom.isBlank()) {
             throw new IllegalArgumentException("El nom de l'aula és obligatori");
@@ -31,7 +43,10 @@ public class Aula implements Reservable {
     @Override
     public boolean estaDisponible() { return disponible; }
 
-    // TODO RA4: documenta què passa si l'aula ja està reservada.
+    /**
+     * Realitza la reserva de l'aula si aquesta es troba lliure.
+     * @throws IllegalStateException si l'aula ja ha estat reservada anteriorment i no s'ha alliberat.
+     */
     @Override
     public void reservar() {
         if (!disponible) {
@@ -40,16 +55,31 @@ public class Aula implements Reservable {
         disponible = false;
     }
 
+    /**
+     * Restableix l'estat de l'aula a disponible per a futures reserves.
+     */
     @Override
     public void alliberar() { disponible = true; }
 
-    // TODO RA4: documenta el càlcul del cost, el paràmetre hores, el retorn i les excepcions.
+    /**
+     * Calcula l'import total de la reserva basant-se en una tarifa fixa per hora.
+     *
+     * @param hores Nombre d'hores totals de la reserva.
+     * @return El cost final calculat
+     * @throws IllegalArgumentException si el nombre d'hores és menor o igual a zero.
+     */
     @Override
     public double calcularCostReserva(int hores) {
         validarHores(hores);
         return hores * 12.0;
     }
 
+    /**
+     * Mètode auxiliar per garantir que el temps de reserva és coherent.
+     *
+     * @param hores Valor enter a validar.
+     * @throws IllegalArgumentException si el valor no és estrictament positiu.
+     */
     protected void validarHores(int hores) {
         if (hores <= 0) {
             throw new IllegalArgumentException("Les hores han de ser positives");

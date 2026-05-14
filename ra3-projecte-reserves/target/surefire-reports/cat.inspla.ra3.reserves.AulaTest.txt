@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: cat.inspla.ra3.reserves.AulaTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.232 s -- in cat.inspla.ra3.reserves.AulaTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.255 s -- in cat.inspla.ra3.reserves.AulaTest

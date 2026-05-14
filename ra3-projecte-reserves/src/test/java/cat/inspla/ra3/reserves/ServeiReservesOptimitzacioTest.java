@@ -51,4 +51,41 @@ class ServeiReservesOptimitzacioTest {
 
         assertTrue(informe.split(System.lineSeparator()).length >= 2);
     }
+
+    @Test
+    void recursosOrdenatsGestionaMajusculesIMinusculesCorrectament() {
+        ServeiReserves servei = new ServeiReserves();
+        servei.afegirRecurs(new Aula("b", 10));
+        servei.afegirRecurs(new Aula("A", 10));
+        servei.afegirRecurs(new Aula("a", 10));
+
+        List<Reservable> ordenats = servei.obtenirRecursosOrdenatsPerNom();
+
+        assertTrue(ordenats.get(0).getNom().equalsIgnoreCase("a"));
+        assertEquals("b", ordenats.get(2).getNom());
+    }
+
+    @Test
+    void calcularCostTotalSumaTotsElsRecursos() {
+        ServeiReserves servei = new ServeiReserves();
+        servei.afegirRecurs(new Aula("Aula 1", 10));
+        servei.afegirRecurs(new Aula("Aula 2", 10));
+
+        double total = servei.calcularCostTotal(2);
+
+        assertEquals(48.0, total, "El cost total hauria de ser la suma de tots els recursos");
+    }
+
+    @Test
+    void buscarPerNomRetornaRecursCorrecte() {
+        ServeiReserves servei = new ServeiReserves();
+        Aula aulaBuscada = new Aula("Objectiu", 20);
+        servei.afegirRecurs(new Aula("Altra", 10));
+        servei.afegirRecurs(aulaBuscada);
+
+        Reservable resultat = servei.buscarPerNom("objectiu");
+        assertNotNull(resultat);
+        assertEquals("Objectiu", resultat.getNom());
+    }
+
 }
