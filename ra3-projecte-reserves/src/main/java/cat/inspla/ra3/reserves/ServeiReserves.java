@@ -46,7 +46,8 @@ public class ServeiReserves {
 
     /**
      * Utilitzant el metode .sorted es filtra tot amb l'algoritme Timsort
-     * Pero mante la logica amb Comparator.compaging neccecitant una variable i fent la comparacio amb aquesta
+     * Pero mante la logica amb Comparator.compaging neccecitant una variable i fent la comparacio amb
+     * aquesta
      */
     public List<Reservable> obtenirRecursosOrdenatsPerNom() {
         return recursos.stream()
