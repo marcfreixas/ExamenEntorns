@@ -21,6 +21,7 @@ public class Main {
 
 
         List<Reservable> ordenats = servei.obtenirRecursosOrdenatsPerNom();
+        
         ordenats.forEach(r -> System.out.println("- " + r.getNom()));
 
 
